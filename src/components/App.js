@@ -1,15 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Section from './feedback/Section';
 import FeedbackOptions from './feedback/FeedbackOptions';
 import Statistics from './feedback/Statistics';
 
-export default function App(){
-
+export default function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const handleButtonClick = (option) => {
+  const handleButtonClick = option => {
     switch (option) {
       case 'good':
         setGood(good + 1);
@@ -23,21 +22,21 @@ export default function App(){
       default:
         break;
     }
-  }
+  };
 
   const countTotalFeedback = () => {
     return good + neutral + bad;
-  }
+  };
 
   const countPositiveFeedbackPercentage = () => {
     return (good / countTotalFeedback()) * 100;
-  }
+  };
 
   return (
     <>
       <Section title="Please leave your feedback">
         <FeedbackOptions
-          options={['good', 'neutral', 'bad']}
+          options={Object.keys({ good, neutral, bad })}
           onLeaveFeedback={handleButtonClick}
         />
       </Section>
